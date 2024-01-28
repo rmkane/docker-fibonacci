@@ -1,7 +1,7 @@
 import bodyParser from "body-parser";
 import cors from "cors";
 import express from "express";
-import { Pool } from "pg";
+import pg from "pg";
 import redis from "redis";
 
 import keys from "./keys.js";
@@ -12,7 +12,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Postgres Client Setup
-const pgClient = new Pool({
+const pgClient = new pg.Client({
   user: keys.pgUser,
   host: keys.pgHost,
   database: keys.pgDatabase,
