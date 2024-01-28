@@ -46,13 +46,13 @@ app.get("/", (req, res) => {
 // get all values from postgres
 app.get("/values/all", async (req, res) => {
   const values = await pgClient.query("SELECT * FROM values");
-  res.send(values.rows);
+  res.send(values.rows); // Example: [{"number":5},{"number":6}]
 });
 
 // get all values from redis
 app.get("/values/current", async (req, res) => {
   redisClient.hgetall("values", (err, values) => {
-    res.send(values);
+    res.send(values); // Example: {"5":"8","6":"13"}
   });
 });
 

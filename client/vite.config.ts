@@ -8,7 +8,7 @@ export default defineConfig({
     hmr: {
       protocol: "ws",
       host: "localhost",
-      clientPort: 3050,
+      clientPort: 3050, // Default: 3050, Change to 5173 for local dev
     },
   },
 });

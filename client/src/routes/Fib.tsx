@@ -4,18 +4,29 @@ import axios from "axios";
 
 import "./Fib.css";
 
+type SeenIndices = { number: number }[];
+type Seen = { data: SeenIndices };
+
 export default function Fib() {
-  const [seenIndices, setSeenIndices] = useState([]);
+  const [seenIndices, setSeenIndices] = useState<SeenIndices>([]);
   const [values, setValues] = useState({});
   const [index, setIndex] = useState("");
 
   const fetchValues = async () => {
     const values = await axios.get("/api/values/current");
+    if (typeof values.data === "string") {
+      console.warn("Did not successfully fetch current values.");
+      return;
+    }
     setValues(values.data);
   };
 
   const fetchIndices = async () => {
-    const seenIndicesAll = await axios.get("/api/values/all");
+    const seenIndicesAll = (await axios.get("/api/values/all")) as Seen;
+    if (typeof seenIndicesAll.data === "string") {
+      console.warn("Did not successfully fetch seen indices.");
+      return;
+    }
     setSeenIndices(seenIndicesAll.data);
   };
 
