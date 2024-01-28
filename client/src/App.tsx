@@ -3,7 +3,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Fib from "./routes/Fib";
 import OtherPage from "./routes/OtherPage";
 
-import "./App.css";
 import Layout from "./Layout";
 
 const router = createBrowserRouter([

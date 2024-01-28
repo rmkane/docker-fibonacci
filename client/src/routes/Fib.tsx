@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 
 import axios from "axios";
 
+import "./Fib.css";
+
 export default function Fib() {
   const [seenIndices, setSeenIndices] = useState([]);
   const [values, setValues] = useState({});
@@ -39,7 +41,7 @@ export default function Fib() {
     ));
 
   return (
-    <div>
+    <div className="Fib">
       <form onSubmit={handleSubmit}>
         <label>Enter your index:</label>
         <input value={index} onChange={(e) => setIndex(e.target.value)} />
