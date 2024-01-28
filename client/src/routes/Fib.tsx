@@ -9,19 +9,11 @@ export default function Fib() {
 
   const fetchValues = async () => {
     const values = await axios.get("/api/values/current");
-    if (values.data.startsWith("<!doctype html>")) {
-      console.log("Invalid...");
-      return;
-    }
     setValues(values.data);
   };
 
   const fetchIndices = async () => {
     const seenIndicesAll = await axios.get("/api/values/all");
-    if (seenIndicesAll.data.startsWith("<!doctype html>")) {
-      console.log("Invalid...");
-      return;
-    }
     setSeenIndices(seenIndicesAll.data);
   };
 

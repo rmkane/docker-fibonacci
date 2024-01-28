@@ -12,7 +12,7 @@ app.use(cors());
 app.use(bodyParser.json());
 
 // Postgres Client Setup
-const pgClient = new pg.Client({
+const pgClient = new pg.Pool({
   user: keys.pgUser,
   host: keys.pgHost,
   database: keys.pgDatabase,
