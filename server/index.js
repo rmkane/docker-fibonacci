@@ -4,7 +4,7 @@ import express from "express";
 import { Pool } from "pg";
 import redis from "redis";
 
-import keys from "./keys";
+import keys from "./keys.js";
 
 // Express App Setup
 const app = express();
