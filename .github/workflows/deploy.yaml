@@ -1,0 +1,23 @@
+name: Deploy MultiDocker
+on:
+  push:
+    branches:
+      - main
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+      - run: docker build -t rmkane/react-test -f ./client/Dockerfile.dev ./client
+      - run: docker run -e CI=true rmkane/react-test npm test
+
+      - run: docker build -t rmkane/multi-client ./client
+      - run: docker build -t rmkane/multi-nginx ./nginx
+      - run: docker build -t rmkane/multi-server ./server
+      - run: docker build -t rmkane/multi-worker ./worker
+
+      - run: docker push rmkane/multi-client
+      - run: docker push rmkane/multi-nginx
+      - run: docker push rmkane/multi-server
+      - run: docker push rmkane/multi-worker
